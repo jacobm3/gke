@@ -122,8 +122,9 @@ https://www.googleapis.com/auth/monitoring.write,
 https://www.googleapis.com/auth/servicecontrol,
 https://www.googleapis.com/auth/service.management.readonly,
 https://www.googleapis.com/auth/trace.append \
---image=debian-9-stretch-v20190423 --image-project=debian-cloud --boot-disk-size=10GB \
---boot-disk-type=pd-standard --boot-disk-device-name=instance-1
+--image=debian-9-stretch-v20190423 --image-project=debian-cloud \
+--boot-disk-size=10GB --boot-disk-type=pd-standard \
+--boot-disk-device-name=instance-1
 ```
 
 gcloud commands provide a consistent and reliable way to provision GCP resources. Easy for computers to execute, but can be challenging for humans.
@@ -170,7 +171,7 @@ resources:
         type: ONE_TO_ONE_NAT
 ```
 
-ARM templates provide a consistent and reliable way to provision GCP resources. JSON is easy for computers to read, but can be challenging for humans to edit and troubleshoot.
+YAML templates provide a consistent and reliable way to provision GCP resources. JSON is easy for computers to read, but can be challenging for humans to edit and troubleshoot.
 
 ???
 **Which brings us to method #2, GCP Resource Manager templates, also known as ARM templates. Have any of you used ARM templates? What's that experience like?**
