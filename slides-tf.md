@@ -111,7 +111,7 @@ Method 1: GCP Portal (GUI)
 name: GCP-CLI
 Method 2: gcloud command
 -------------------------
-```
+```yaml
 gcloud compute --project=hashi-lab instances create instance-1 --zone=us-east1-b \
 --machine-type=n1-standard-1 --subnet=default --network-tier=PREMIUM  \
 --maintenance-policy=MIGRATE \
