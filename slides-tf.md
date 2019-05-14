@@ -217,7 +217,7 @@ name: What-is-Terraform
 What is Terraform?
 -------------------------
 
-![:scale 100%](./images/GCP_tf_code.png)
+![:scale 100%](./images/azure_tf_code.png)
 
 .contents[
 * Executable Documentation
