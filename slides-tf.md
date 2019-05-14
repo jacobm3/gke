@@ -1,7 +1,7 @@
 name: GCP-Terraform-Vault-Workshop
 class: center,middle,title-slide
 count: false
-![:scale 80%](images/tfaz.png)
+![:scale 80%](images/tf-gke.png)
 .titletext[
 GCP Terraform Workshop]
 Build GCP Resources With Infrastructure as Code
