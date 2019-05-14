@@ -205,7 +205,7 @@ resource "google_compute_instance" "vm_instance" {
   }
 }
 ```
-.center[Example terraform code for building an GCE VM.]
+.center[Example terraform code for building an GCP VM.]
 
 ???
 **And finally we have option #3, Terraform. Terraform uses a Domain Specific Language, or DSL that is designed to be both human-friendly and machine-readable. This is an example snippet of Terraform code. Now watch as I flip back to the previous slide. Would you rather have to write and maintain this complex and messy JSON, or this simple, compact terraform code?**
@@ -385,7 +385,7 @@ name: Native-Tools
 Native Cloud Provisioning Tools
 -------------------------
 <br><br><br>
-.center[![:scale 100%](images/clouds.png)]
+.center[![:scale 100%](images/cloudlogos.png)]
 
 Each cloud has its own YAML or JSON based provisioning tool. 
 
