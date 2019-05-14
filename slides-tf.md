@@ -184,16 +184,26 @@ YAML templates provide a consistent and reliable way to provision GCP resources.
 
 ---
 name: Provision-with-Terraform-2
-Method 3: TODO update with GCE example - Provision with Terraform
+Method 4: Provision with Terraform
 -------------------------
 <br><br><br>
 ```terraform
-resource "google_compute_instance" "web" {
-  name         = "MyFirstVM"
-  machine_type = "XXX"
-  zone         = "${var.zone}"
-  username     = "John Doe"
-  password     = "YoullNeverGuessThisPassword"
+resource "google_compute_instance" "vm_instance" {
+  name         = "terraform-instance"
+  machine_type = "f1-micro"
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-9"
+    }
+  }
+
+  network_interface {
+    # A default network is created for all GCP projects
+    network       = "default"
+    access_config = {
+    }
+  }
 }
 ```
 .center[Example terraform code for building an GCE VM.]
