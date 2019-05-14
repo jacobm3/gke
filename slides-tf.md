@@ -126,7 +126,7 @@ https://www.googleapis.com/auth/trace.append \
 --boot-disk-type=pd-standard --boot-disk-device-name=instance-1
 ```
 
-ARM templates provide a consistent and reliable way to provision GCP resources. JSON is easy for computers to read, but can be challenging for humans to edit and troubleshoot.
+gcloud commands provide a consistent and reliable way to provision GCP resources. Easy for computers to execute, but can be challenging for humans.
 
 ???
 **Which brings us to method #2, GCP Resource Manager templates, also known as ARM templates. Have any of you used ARM templates? What's that experience like?**
@@ -139,27 +139,35 @@ ARM templates provide a consistent and reliable way to provision GCP resources. 
 
 ---
 name: GCP-CLI
-Method 2:
+Method 3: Google Cloud Deployment Manager
 -------------------------
-```json
-{
-...
-"apiVersion": "2017-03-30",
-"type": "Google.Compute/virtualMachines",
-"name": "[variables('vmName')]",
-"location": "[parameters('location')]",
-"dependsOn": [
-  "[concat('Google.Network/networkInterfaces/', variables('nicName'))]"
-],
-"properties": {
-  "hardwareProfile": {
-    "vmSize": "[parameters('virtualMachineSize')]"
-  },
-  "osProfile": {
-    "computerName": "[variables('vmName')]",
-    "adminUsername": "[parameters('adminUsername')]",
-    "adminPassword": "[parameters('adminPassword')]"
-  }
+```yaml
+resources:
+- type: compute.v1.instance
+  name: quickstart-deployment-vm
+  properties:
+    # The properties of the resource depend on the type of resource. For a list
+    # of properties, see the API reference for the resource.
+    zone: us-central1-f
+    # Replace [MY_PROJECT] with your project ID
+    machineType: https://www.googleapis.com/compute/v1/projects/[MY_PROJECT]/zones/us-central1-f/machineTypes/f1-micro
+    disks:
+    - deviceName: boot
+      type: PERSISTENT
+      boot: true
+      autoDelete: true
+      initializeParams:
+        # Replace [IMAGE_PROJECT] with the image project, such as `debian-cloud`
+        # Replace [FAMILY_NAME] with the image family name.
+        # See a full list of image families at https://cloud.google.com/compute/docs/images#os-compute-support
+        sourceImage: https://www.googleapis.com/compute/v1/projects/[IMAGE_PROJECT]/global/images/family/[FAMILY_NAME]
+    # Replace [MY_PROJECT] with your project ID
+    networkInterfaces:
+    - network: https://www.googleapis.com/compute/v1/projects/[MY_PROJECT]/global/networks/default
+      # Access Config required to give the instance a public IP address
+      accessConfigs:
+      - name: External NAT
+        type: ONE_TO_ONE_NAT
 ```
 
 ARM templates provide a consistent and reliable way to provision GCP resources. JSON is easy for computers to read, but can be challenging for humans to edit and troubleshoot.
