@@ -102,7 +102,7 @@ Let's look at a few different ways you could provision a new GCP Virtual Machine
 name: GCP-Portal-Provision
 Method 1: GCP Portal (GUI)
 -------------------------
-![:scale 100%](images/GCP_provision.png)
+![:scale 100%](images/gcp-console.png)
 
 ???
 **This should look familiar if you've ever used GCP. You click on XXX, and you'll see a whole list of different base images you can use to provision your VM. Some of these are provided by Google, others are provided by third parties in the marketplace. You either search or browse for the thing you need, and click on it. Easy.**
