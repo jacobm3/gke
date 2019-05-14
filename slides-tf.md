@@ -3,8 +3,8 @@ class: center,middle,title-slide
 count: false
 ![:scale 80%](images/tf-gke.png)
 .titletext[
-GCP Terraform Workshop]
-Build GCP Resources With Infrastructure as Code
+GKE Terraform Workshop]
+Deploy GKE With Infrastructure as Code
 
 ???
 <!---
