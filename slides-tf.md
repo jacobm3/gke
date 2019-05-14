@@ -108,17 +108,34 @@ Method 1: GCP Portal (GUI)
 **This should look familiar if you've ever used GCP. You click on XXX, and you'll see a whole list of different base images you can use to provision your VM. Some of these are provided by Google, others are provided by third parties in the marketplace. You either search or browse for the thing you need, and click on it. Easy.**
 
 ---
-name: GCP-Portal-Provision-2
-Method 1: GCP Portal (GUI)
+name: GCP-CLI
+Method 2:
 -------------------------
-![:scale 100%](images/GCP_provision_3.png)
+```
+gcloud compute --project=hashi-lab instances create instance-1 --zone=us-east1-b \
+--machine-type=n1-standard-1 --subnet=default --network-tier=PREMIUM \
+--maintenance-policy=MIGRATE --service-account=60371302463-compute@developer.gserviceaccount.com \
+--scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,
+https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,
+https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append \
+--image=debian-9-stretch-v20190423 --image-project=debian-cloud --boot-disk-size=10GB \
+--boot-disk-type=pd-standard --boot-disk-device-name=instance-1
+```
+
+ARM templates provide a consistent and reliable way to provision GCP resources. JSON is easy for computers to read, but can be challenging for humans to edit and troubleshoot.
 
 ???
-**Once you've chosen your base OS image, you will fill in some more details like the size of the VM, which location you want to run it in, and the initial administrator password. The GCP portal can be handy for spinning up individual VMs and dev or test environments. The good news is it's really easy to spin up infrastructure this way. The bad news is that it doesn't scale, and chances are nobody's keeping track of what got built.**
+**Which brings us to method #2, GCP Resource Manager templates, also known as ARM templates. Have any of you used ARM templates? What's that experience like?**
+
+**ARM templates are written in JSON, which stands for JavaScript Object Notation. It is an open-standard format for transmitting data between computers. And don't get me wrong, JSON is great. If you happen to be a computer. Computers are really good at reading these files full of key-value pairs and lists.**
+
+**The problem is that editing and maintaining huge JSON files is hard for humans. Because JSON is not a programming language, you'll end up writing a lot more lines of complex code that is hard to understand and change.**
+
+**ARM templates - easy for computers to read, hard for humans to troubleshoot and maintain.**
 
 ---
-name: GCP-Resource-Manager
-Method 2: TODO - replace with GDM - GCP Resource Manager (ARM) Template
+name: GCP-CLI
+Method 2:
 -------------------------
 ```json
 {
