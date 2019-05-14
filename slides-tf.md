@@ -425,15 +425,6 @@ https://blog.1password.com/terraforming-1password/
 1Password were able to move their entire production infrastructure to Terraform in a few short weeks. Now they can tear down and completely rebuild their production environment in a matter of hours.
 
 ---
-Name: Why-Terraform
-Why Terraform?
--------------------------
-![:scale 100%](images/GCP-loves-terraform.png)
-
-???
-**Google has invested significant resources to ensure that GCP users have a first-class experience when using Terraform to provision on GCP. Your friendly Google solutions architect is happy to support you if you choose to use Terraform, especially if you are adopting a multi-cloud strategy. Terraform is even built right into XXX ??? GCP CloudShell. You can use Terraform with zero setup, right from your web browser.**
-
----
 Name: Why-Terraform-on-GCP
 Why Terraform on GCP?
 -------------------------
