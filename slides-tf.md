@@ -791,7 +791,7 @@ We are not actually building anything yet. This is just a dry run, showing us wh
 
 ---
 name: set-prefix
-Set the Prefix Variable
+Set the gcp_project Variable
 -------------------------
 Create file **terraform.tfvars** at the top of the project directory.
 
@@ -810,25 +810,25 @@ The **terraform.tfvars** file is your own personal settings file. You can use it
 
 ---
 name: defining-variables
-Where are Variables Defined?
+Where are Variables Declared?
 -------------------------
-Open up the **variables.tf** file and you can see all of the defined variables. Note that some of them have default settings. If you omit the default, the user will be prompted to enter a value.
+Open up the **variables.tf** file and you can see all of the declared variables. Note that some of them have default settings. If you omit the default, the user will be prompted to enter a value.
 
 Here we are *declaring* all the variables that we intend to use in our Terraform code.
 
 ```tex
-variable "prefix" {
-  description = "This prefix will be included in the name of most resources."
+variable "gcp_region" {
+  description = "GCP region, e.g. us-east1"
+  default = "us-central1"
 }
 
-variable "location" {
-  description = "The region where the virtual network is created."
-  default     = "centralus"
+variable "gcp_zone" {
+  description = "GCP zone, e.g. us-east1-b (which must be in gcp_region)"
+  default = "us-central1-b"
 }
 
-variable "address_space" {
-  description = "The address space that is used by the virtual network. You can supply more than one address space. Changing this forces a new resource to be created."
-  default     = "10.0.0.0/16"
+variable "gcp_project" {
+  description = "GCP project name"
 }
 ```
 
@@ -838,44 +838,6 @@ variable "address_space" {
 Q. Where could you override these defaults?  
 A. In the terraform.tfvars file, or optionally on the command line or via environment variables. The most common approach is to use a tfvars file.
 
----
-name: chapter-2-lab
-Lab Exercise 2a: Set the location variable
--------------------------
-Choose the GCP location nearest to you and set the 'location' variable. You can find a list of GCP locations here:
-
-TODO - fix this
-https://GCP.Google.com/en-us/global-infrastructure/locations/
-
-Examples:
-```
-centralus  - Iowa, USA
-eastus     - Virginia, USA
-westus     - California, USA
-uksouth    - London, UK
-southindia - Chennai, India
-chinaeast  - Shanghai, China
-```
-
-???
-Have the students do this one on their own. They can choose any region, please let us know if you find any regions that do not support the VM type we use in this workshop.
-
----
-name: chapter-2-lab-answer
-Lab Exercise 2a: Answer
--------------------------
-<br><br><br>
-Your **terraform.tfvars** file should now look similar to this:
-
-```tex
-# Rename or copy this file to terraform.tfvars
-# Prefix must be all lowercase letters, no symbols please.
-
-prefix = "yourname"
-location = "uksouth"
-```
-
-If you wish you can run `terraform plan` again to see a different result. Notice how your location setting has overridden the default setting.
 
 ---
 name: chapter-2-review
@@ -886,7 +848,7 @@ In this chapter we:
 * Used the `terraform init` command
 * Ran the `terraform plan` command
 * Learned about variables
-* Set our location and prefix
+* Set our project name
 ]
 
 ---
@@ -905,7 +867,7 @@ name: main.tf
 Terraform Comments
 -------------------------
 <br><br>
-Open the main.tf file in the VSC file browser. You'll notice that most of the file is full of comments. There are two types of comments:
+Open the main.tf file in your text editor. You'll notice that most of the file is full of comments. There are two types of comments:
 
 Line Comments begin with an octothorpe<sup>*</sup>, or pound symbol: #
 ```hcl
@@ -940,97 +902,6 @@ Every terraform resource is structured exactly the same way.
 ???
 Everything else you want to configure within the resource is going to be sandwiched between the curly braces. These can include strings, lists, and maps.
 
----
-name: resources-building-blocks
-Resources - Terraform Building Blocks
--------------------------
-<br><br><br>
-Find the first resource in the main.tf file on lines 18-21. These lines are already uncommented for you.
-
-You can toggle comments with the _Edit > Toggle Line Comment_ menu, or by simply highlighting some text and pressing `CTRL-/`. 
-
-```hcl
-resource "GCPrm_resource_group" "vaultworkshop" {
-  name     = "${var.prefix}-vault-workshop"
-  location = "${var.location}"
-}
-```
-
-???
-**Try commenting out this code, then uncommenting it. This is the easy way to write code. Just highlight, uncomment, save the file.**
-
-**Resources are the smallest building blocks of Terraform. Think of them as declarative statements about what you want to build. Save the main.tf file.**
-
-**Note that the resource contains references to the two variables we set in the previous chapter, location and prefix. These will be replaced when we run terraform commands. Variables are always enclosed in a dollar sign and curly braces.**
-
-I like to flip over to my own workstation and actually show them how to do this. If you run your own workstation in a separate virtual desktop or window, you can easily flip back and forth between slides and live code.
-
----
-name: terraform-plan
-I Love It When a Plan Comes Together
--------------------------
-Run the `terraform plan` command and observe the output:
-
-Command:
-```powershell
-terraform plan
-```
-
-Output:
-```tex
-------------------------------------------------------------------------
-An execution plan has been generated and is shown below.
-Resource actions are indicated with the following symbols:
-  + create
-
-Terraform will perform the following actions:
-
-  + GCPrm_resource_group.vaultworkshop
-      id:       <computed>
-      location: "centralus"
-      name:     "yourname-vault-workshop"
-      tags.%:   <computed>
-
-
-Plan: 1 to add, 0 to change, 0 to destroy.
-------------------------------------------------------------------------
-```
-
-???
-**Terraform plan is a dry run. It gives you a chance to have other people review and approve your changes before you apply them.**
-
----
-name: terraform-graph
-Terraform Graph
--------------------------
-<br><br><br>
-Let's take a closer look at what Terraform wants to build. Use the command palette menu, or the CTRL-SHIFT-P keyboard shortcut to bring up the Command Palette.
-
-.center[![:scale 60%](images/command_palette.png)]
-
----
-name: terraform-graph-2
-Terraform Graph
--------------------------
-<br><br><br>
-Start typing 'terraform' into the Command Palette and you'll see some different options in a pull-down menu. Choose the Terraform: Preview Graph option. Select graph type 'plan'.
-
-.center[![:scale 80%](images/preview_graph.png)]
-
----
-name: terraform-graph-3
-Terraform Graph
--------------------------
-You'll see a graph pop up in a new tab. This is a map of all the resources and dependencies that Terraform is keeping track of.
-
-.center[![:scale 100%](images/resource_graph.png)]
-
-???
-**This is the graph for the fully completed workshop lab once it is built.**
-
-**You might have noticed that we have a bunch of variables that we aren't using yet. Don't worry, we will use them as the workshop progresses. You can click on any of the nodes in the graph to jump to the specific part of your code where it is being referenced. Any time you want to update the graph simply use the Command Palette to regenerate it.**
-
-NOTE: The graph is a bit more visible with a 'light' color theme.
 
 ---
 name: terraform-apply
@@ -1046,20 +917,15 @@ terraform apply
 Output:
 ```tex
 ...
-Plan: 1 to add, 0 to change, 0 to destroy.
-
-Do you want to perform these actions?
-  Terraform will perform the actions described above.
-  Only 'yes' will be accepted to approve.
-  Enter a value: yes
-
-  GCPrm_resource_group.vaultworkshop: Creating...
-  location: "" => "centralus"
-  name:     "" => "yourname-vault-workshop"
-  tags.%:   "" => "<computed>"
-GCPrm_resource_group.vaultworkshop: Creation complete after 1s (ID: /subscriptions/c0a607b2-6372-4ef3-abdb-...ourceGroups/yourname-vault-workshop)
-
-Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+google_container_cluster.k8sexample: Creating...
+  additional_zones.#:                    "" => "<computed>"
+  addons_config.#:                       "" => "<computed>"
+  cluster_autoscaling.#:                 "" => "<computed>"
+  cluster_ipv4_cidr:                     "" => "<computed>"
+  description:                           "" => "example k8s cluster"
+...
+google_container_cluster.k8sexample: Still creating... (10s elapsed)
+XXX
 ```
 
 ---
