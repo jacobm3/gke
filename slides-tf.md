@@ -612,7 +612,7 @@ Explore the Repository
 -rw-rw-rw- 1 jacob jacob   26 May 14 16:26 terraform.tfvars
 -rw-rw-rw- 1 jacob jacob 1.1K May 14 16:27 variables.tf
 ```
-Terraform configuration files always end in either a `.tf` or `.tfvars` extension. These files are marked with the purple Terraform icon if you are using the vscode-icons set.
+Terraform configuration files always end in either a `.tf` or `.tfvars` extension. 
 
 ???
 This is a good time to explore the VSC text editor a bit. Show your students that you can do almost everything from within the editor. You can expand and collapse the file browser. Show what each icon on the left side of the GUI does. You can also point out that the terminal can easily be maximized or minimized.
@@ -623,6 +623,24 @@ State
 -------------------------
 
 .center[![:scale 90%](images/remote-state.png)]
+
+---
+name: workstation-setup-8
+.gitignore
+-------------------------
+
+```bash
+#  Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# .tfvars files
+*.tfvars
+*.log
+```
 
 ---
 name: workstation-setup-10
