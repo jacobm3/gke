@@ -840,17 +840,19 @@ We are not actually building anything yet. This is just a dry run, showing us wh
 
 ---
 name: set-prefix
-Set the gcp_project Variable
+Set the Variables
 -------------------------
 Create file **terraform.tfvars** at the top of the project directory.
 
 Add a "gcp_project" variable with the name of your project.
+Add a "cluster_name" variable with the name of your cluster (must be unique within your project).
 
 ```tex
 gcp_project = "your-project-name"
+cluster_name = "your-cluster-name"
 ```
 
-Now you will no longer be prompted to enter your gcp_project variable when you run terraform commands.
+Now you will no longer be prompted to enter your gcp_project or cluster_name variables when you run terraform commands.
 
 The **terraform.tfvars** file is your own personal settings file. You can use it to set or override any of the default variables in the variables.tf file.
 
