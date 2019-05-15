@@ -62,16 +62,15 @@ Table of Contents
 =========================
 
 .contents[
-0. Intro to Terraform & Demo
-1. Set Up Your Workstation
-2. My First Terraform
-3. Terraform In Action: plan, apply, destroy
-4. Organizing Your Terraform Code
-5. Provision GCP VMs
-6. Provision GKE Cluster
-7. Deploy GKE Services 
-8. Manage and Change Infrastructure State
-9. Terraform Enterprise - Built for Teams and Organizations
+1. Class Requirements
+1. Intro to Terraform & Demo
+1. Terraform In Action: plan, apply, destroy
+1. Remote State
+1. Organizing Your Terraform Code
+1. Provision GKE Cluster
+1. Provision GKE Services
+1. Manage and Change Infrastructure State
+1. Terraform Enterprise - Built for Teams and Organizations
 ]
 
 ???
