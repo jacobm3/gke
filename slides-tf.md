@@ -586,8 +586,10 @@ Storage -> Storage -> Create Bucket
 <br><br>
 CLI:
 ```bash
+$ export GOOGLE_CLOUD_KEYFILE_JSON=/home/you/your-creds.json
+
 $ gcloud auth activate-service-account --project=YOUR-PROJECT  \
-         --key-file=PATH-TO-YOUR-SVC-CREDS.json
+         --key-file=/home/you/your-creds.json
 
 $ gsutil mb gs://YOUR-BUCKET-NAME 
 
