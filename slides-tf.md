@@ -101,7 +101,9 @@ Helpful Links
 These Slides - https://jacobm3.github.io/gke/
 
 Terraform binary - https://www.terraform.io/downloads.html
+
 k8s cluster repo - https://github.com/jacobm3/gcp-workshop-k8s-cluster
+
 k8s services repo - https://github.com/jacobm3/gcp-workshop-k8s-services
 
 ---
