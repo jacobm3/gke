@@ -108,13 +108,16 @@ Terraform binary -
 <br>
 https://www.terraform.io/downloads.html
 <br>
+<br>
 k8s cluster repo - 
 <br>
 https://github.com/jacobm3/gcp-workshop-k8s-cluster
 <br>
+<br>
 k8s services repo - 
 <br>
 https://github.com/jacobm3/gcp-workshop-k8s-services
+<br>
 <br>
 Terraform resources - 
 <br>
