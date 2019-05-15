@@ -561,9 +561,13 @@ Create a Storage Bucket
 <br><br>
 Pick a Bucket Name
 <br><br>
+<br><br>
 GCP Console:
+<br>
 Storage -> Storage -> Create Bucket
-
+<br><br>
+-or-
+<br><br>
 CLI:
 ```bash
 $ gcloud auth activate-service-account --project=YOUR-PROJECT  \
