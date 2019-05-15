@@ -98,8 +98,6 @@ Things you'll need to complete this workshop:
 name: Prereqs
 Helpful Links
 -------------------------
-Helpful Links
-
 These Slides - https://jacobm3.github.io/gke/
 
 Terraform binary - https://www.terraform.io/downloads.html
