@@ -655,12 +655,12 @@ My First Terraform
 
 ---
 name: workstation-setup-6
-Configure Remote State for gcp-workshop-k8s-cluster
+Configure Remote State for <br>gcp-workshop-k8s-cluster
 -------------------------
 <br><br>
 .biglist[
 1. Locate the path to your service account JSON credential file
-1. Edit backend.tf
+1. Edit gcp-workshop-k8s-cluster/backend.tf
 1. Update bucket name and credentials path
 ]
 
