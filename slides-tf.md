@@ -638,7 +638,7 @@ name: workstation-setup-8
 State
 -------------------------
 
-![:scale 100%](images/remote-state.png)
+![:scale 80%](images/remote-state.png)
 
 ---
 name: workstation-setup-8
