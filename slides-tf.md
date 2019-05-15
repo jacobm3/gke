@@ -104,6 +104,7 @@ These Slides -
 <br>
 https://jacobm3.github.io/gke/
 <br>
+<br>
 Terraform binary - 
 <br>
 https://www.terraform.io/downloads.html
