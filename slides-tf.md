@@ -598,6 +598,7 @@ cd gcp-workshop-k8s-cluster
 ???
 **This git command is copying a remote repository full of Terraform code onto your workstation. After that we change directories into the repo, and reload our text editor with the current folder opened. Visual Studio Code has a built in file browser which is essential for keeping track of large Terraform projects.**
 
+
 ---
 name: workstation-setup-8
 Explore the Repository
@@ -615,6 +616,13 @@ Terraform configuration files always end in either a `.tf` or `.tfvars` extensio
 
 ???
 This is a good time to explore the VSC text editor a bit. Show your students that you can do almost everything from within the editor. You can expand and collapse the file browser. Show what each icon on the left side of the GUI does. You can also point out that the terminal can easily be maximized or minimized.
+
+---
+name: workstation-setup-8
+State
+-------------------------
+
+.center[![:scale 90%](images/remote-state.png)]
 
 ---
 name: workstation-setup-10
