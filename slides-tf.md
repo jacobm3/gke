@@ -950,7 +950,7 @@ Terraform Plan - Repeat
 Run the `terraform plan` command again and see what happens.
 
 Command:
-```powershell
+```bash
 terraform plan
 ```
 
@@ -960,11 +960,11 @@ Refreshing Terraform state in-memory prior to plan...
 The refreshed state will be used to calculate this plan, but will not be
 persisted to local or remote state storage.
 
-GCPrm_resource_group.vaultworkshop: Refreshing state... (ID: /subscriptions/c0a607b2-6372-4ef3-abdb-...ourceGroups/yourname-vault-workshop)
+google_container_cluster.k8sexample: Refreshing state... (ID: k8sdemo-cluster)
 
 ------------------------------------------------------------------------
 
-*No changes. Infrastructure is up-to-date.
+No changes. Infrastructure is up-to-date.
 
 This means that Terraform did not detect any differences between your
 configuration and real physical resources that exist. As a result, no
@@ -973,34 +973,6 @@ actions need to be performed.
 
 ???
 Terraform is sometimes called idempotent. This means it keeps track of what you built, and if something is already in the correct state Terraform will leave it alone.
-
----
-name: chapter-3a-lab
-Lab Exercise 3a: Change Your Location
--------------------------
-Change the location variable in your terraform.tfvars file to a different GCP location. Re-run the `terraform plan` and `terraform apply` commands. What happens?
-
-???
-This is a good spot for a mini discussion on how Terraform is idempotent, and declarative. You declare what you want (eg, one resource group in a particular region, with a specific name), and then terraform goes and carries out your command, even if you're changing something that already exists. In this example, we have to tear down the existing resource group and build a new one.
-
----
-name: chapter-3a-lab-answer
-Lab Exercise 3a: Answer
--------------------------
-When you changed your location variable, Terraform detected a difference between your current settings and what you built before. Terraform can destroy and recreate resources as you make changes to your code. Some resources can be changed in place.
-
-```tex
-Terraform will perform the following actions:
-
--/+ GCPrm_resource_group.vaultworkshop (new resource required)
-      id:       "/subscriptions/c0a607b2-6372-4ef3-abdb-dbe52a7b56ba/resourceGroups/yourname-vault-workshop" => <computed> (forces new resource)
-      location: "uksouth" => "uscentral" (forces new resource)
-      name:     "yourname-vault-workshop" => "yourname-vault-workshop"
-      tags.%:   "0" => <computed>
-
-
-Plan: 1 to add, 0 to change, 1 to destroy.
-```
 
 ---
 name: terraform-destroy
@@ -1040,79 +1012,14 @@ terraform apply -auto-approve
 
 Output:
 ```tex
-GCPrm_resource_group.vaultworkshop: Creating...
-  location: "" => "centralus"
-  name:     "" => "yourname-vault-workshop"
-  tags.%:   "" => "<computed>"
-GCPrm_resource_group.vaultworkshop: Creation complete after 1s (ID: /subscriptions/c0a607b2-6372-4ef3-abdb-...ourceGroups/yourname-vault-workshop)
+...
+Creation complete after 1s (ID: /subscriptions/c0a607b2-6372-4ef3-abdb-...ourceGroups/yourname-vault-workshop)
 
 Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 ```
 
 ???
 The phrase "We can rebuild him. We have the technology." comes from 1970s TV show, The Six Million Dollar Man. https://www.youtube.com/watch?v=0CPJ-AbCsT8#t=2m00s 
-
----
-name: chapter-3b-lab
-Lab Exercise 3b: Tag Your Resource Group
--------------------------
-Read the documentation for the `GCPrm_resource_group` resource and learn how to add tags to the resource group:
-
-https://www.terraform.io/docs/providers/GCPrm/r/resource_group.html
-
-Edit your main.tf file and add a tag to the resource. Set the name of the tag to 'environment' and the value to 'Production'.
-
-???
-Don't just give the answer away here. Let people struggle a little bit and try to actually read the documentation. You can literally copy the example right from the docs into your code. Wait a few minutes until everyone's had a chance to try and do this on their own.
-
----
-name: chapter-3b-lab-answer
-Lab Exercise 3b: Answer
--------------------------
-Adding and removing tags is a non-destructive action, therefore Terraform is able to make these changes in-place, without destroying your resource group. Your main.tf file should look like this:
-
-```terraform
-resource "GCPrm_resource_group" "vaultworkshop" {
-  name     = "${var.prefix}-vault-workshop"
-  location = "${var.location}"
-
-  tags = {
-    environment = "Production"
-  }
-}
-```
-
-Note how the tag is added by modifying the existing resource:
-```tex
-GCPrm_resource_group.vaultworkshop: Modifying... (ID: /subscriptions/c0a607b2-6372-4ef3-abdb-...ourceGroups/yourname-vault-workshop)
-  tags.%:           "0" => "1"
-  tags.environment: "" => "Production"
-GCPrm_resource_group.vaultworkshop: Modifications complete after 0s (ID: /subscriptions/c0a607b2-6372-4ef3-abdb-...ourceGroups/yourname-vault-workshop)
-```
-
-???
-Some resources can be non-destructively changed in place. Ask your class what they think some of those resources might be? Good examples are tags and security group rules.
-
----
-name: add-virtual-network
-Add a Virtual Network
--------------------------
-Let's add a virtual network. Scroll down in the main.tf file until you find the GCPrm_virtual_network resource. Uncomment it and save the file.
-
-```terraform
-resource "GCPrm_virtual_network" "vnet" {
-  name                = "${var.prefix}-vnet"
-  location            = "${GCPrm_resource_group.vaultworkshop.location}"
-  address_space       = ["${var.address_space}"]
-  resource_group_name = "${GCPrm_resource_group.vaultworkshop.name}"
-}
-```
-Note the syntax for ensuring that this virtual network is placed into the resource group we created earlier.
-
-Optional: regenerate the Terraform Graph to see how it changes.
-
-???
-Hop over to your own workstation and regenerate the terraform graph. Point out that we now have a Virtual Network, that depends on the resource group. How did Terraform know these things are connected? 
 
 ---
 name: dependency-mapping
@@ -1431,27 +1338,8 @@ http://yourname.centralus.cloudapp.GCP.com:8200
 ```
 
 ---
-name: chapter-4a-lab
-Lab Exercise 4a: Break main.tf into smaller files
--------------------------
-Take the GCPrm_virtual_machine resource out of main.tf and put it into its own file called **vm.tf**. Save both files. Run `terraform apply` again. What happens?
-
----
-name: chapter-4a-lab-answer
-Lab Exercise 4a: Answer
--------------------------
-If you break a large *.tf file down into smaller ones, Terraform doesn't mind. It simply crawls through the directory looking for anything that ends in a .tf extension. All resources in all tf files will be compiled together onto the resource graph before the apply is run.
-
-If you want to exclude some tf files from being run, simply rename them with a different extension or move them into another directory.
-
-???
-Some extra notes:
-
-Terraform will *not* crawl into subdirectories looking for tf files. There's also no way to tell terraform which specific tf files to run or not run. The default behavior is to parse any file ending with the .tf or .tfvars extensions in the current directory.
-
----
-name: chapter-4b-lab
-Lab Exercise 4b: Automatically Format Your Code
+name: chapter-4-lab
+Lab Exercise 4: Automatically Format Your Code
 -------------------------
 <br><br><br>
 Terraform comes with a built-in code formatting command, `terraform fmt`. Add some extra white space and lines to your Terraform code, save the file(s), then run this command in your terminal:
@@ -1460,8 +1348,8 @@ Terraform comes with a built-in code formatting command, `terraform fmt`. Add so
 terraform fmt
 ```
 ---
-name: chapter-4b-lab-answer
-Lab Exercise 4b: Answer
+name: chapter-4-lab-answer
+Lab Exercise 4: Answer
 -------------------------
 <br><br><br><br>
 When you run the `terraform fmt` command your code is automatically formatted according to recommended standards. This ensures that your code is always neat and tidy, and eliminates unnecessary code versions caused by empty spaces.
@@ -1479,154 +1367,6 @@ In this chapter we:
 * Enabled some outputs in our code
 * Refactored our main.tf into smaller parts
 * Learned the `terraform fmt` command
-]
-
----
-name: Chapter-5
-class: center,middle
-.section[
-Chapter 5  
-Provision and Configure GCP VMs
-]
-
----
-name: intro-to-provisioners
-Using Terraform Provisioners
--------------------------
-<br><br><br><br>
-Once you've used Terraform to stand up a virtual machine or container, you may wish to configure your operating system and applications. This is where provisioners come in. Terraform supports several different types of provisioners including: Bash, Powershell, Chef, Puppet, Ansible, and more.
-
-.center[https://www.terraform.io/docs/provisioners/index.html]
-
-???
-**Terraform works hand-in-hand with these other configuration management tools to install packages, configure applications and change OS settings inside of a virtual machine or container.**
-
----
-name: file-provisioner
-The File Provisioner
--------------------------
-The Terraform file provisioner copies files from your workstation onto the remote machine. This is one of the simplest ways to put config files into the correct locations on the target machine. In our code we're using the file provisioner to upload a shell script.
-
-```terraform
-provisioner "file" {
-  source      = "files/setup.sh"
-  destination = "/home/${var.admin_username}/setup.sh"
-
-  connection {
-    type     = "ssh"
-    user     = "${var.admin_username}"
-    password = "${var.admin_password}"
-    host     = "${GCPrm_public_ip.vault-pip.fqdn}"
-  }
-}
-```
-
-Note the *connection* block of code inside the provisioner block. This is where you configure the method for connecting to the target machine. The file provisioner supports both SSH and WinRM connections.
-
-???
-SSH for linux, WinRM for your windows machines.
-
----
-name: remote-exec-provisioner
-The Remote Exec Provisioner
--------------------------
-The remote exec provisioner allows you to execute scripts or other programs on the target host. If its something you can run unattended (for example, a software installer), then you can run it with remote exec.
-
-```terraform
-provisioner "remote-exec" {
-  inline = [
-    "chmod +x /home/${var.admin_username}/*.sh",
-    "sleep 30",
-    "MYSQL_HOST=${var.prefix}-mysql-server /home/${var.admin_username}/setup.sh"
-  ]
-
-  connection {
-    type     = "ssh"
-    user     = "${var.admin_username}"
-    password = "${var.admin_password}"
-    host     = "${GCPrm_public_ip.vault-pip.fqdn}"
-  }
-}
-```
-
-In this example we're running two commands. The first changes the permissions of the script to make it executable. The second command runs the script with variables that we defined earlier.
-
-???
-Local exec and remote exec can be used to trigger Puppet or Ansible runs. We do have a dedicated chef provisioner as well. 
-
----
-name: puppet-chef-ansible
-Terraform & Config Management Tools
--------------------------
-.center[![:scale 80%](images/cpa.jpg)]
-
-Terraform works well with common config management tools like Chef, Puppet or Ansible. Below are some links with more information on each:
-
-Official Chef Terraform provisioner:  
-https://www.terraform.io/docs/provisioners/chef.html
-
-Run Puppet with 'local-exec':  
-https://www.terraform.io/docs/provisioners/local-exec.html
-
-Terraform and Ansible - Better Together:  
-https://github.com/scarolan/ansible-terraform
-
----
-name: provisioner-tips
-Terraform Provisioner Tips
--------------------------
-<br><br>
-Terraform provisioners like remote-exec are great when you need to run a few simple commands or scripts. For more complex configuration management you'll want a tool like Chef or Ansible. 
-
-Provisioners only run the first time a Terraform run is executed. In this sense, they are not idempotent. If you need ongoing state management of VMs or servers that are long-lived, we recommend using a config management tool.
-
-On the other hand, if you want immutable infrastructure you should consider using our [Packer](https://packer.io) tool.
-
----
-name: chapter-5-lab
-Lab Exercise 5: Add a Provisioner Command
--------------------------
-<br>
-Let's add a simple command to our **remote-exec** block of code.  You can use the 'cowsay' command to output messages into your Terraform log:
-
-```terraform
-inline = [
-  "chmod +x /home/${var.admin_username}/*.sh",
-  "sleep 30",
-  "MYSQL_HOST=${var.prefix}-mysql-server /home/${var.admin_username}/setup.sh",
-* "cowsay Mooooooo!"
-]
-```
-
-Run `terraform apply` again and see what happens. Did your virtual machine get rebuilt? Why?
-
-Hint: read up on the [terraform taint](https://www.terraform.io/docs/commands/taint.html) command.
-
-???
-Explain that provisioners only run when virtual machines are first created. If you need to reprovision, you simply destroy and rebuild the VM. You can force a rebuild with this `terraform taint` command.
-
----
-name: chapter-5-lab-answer
-Lab Exercise 5: Answer
--------------------------
-The remote-exec provisioner is a [Creation Time](https://www.terraform.io/docs/provisioners/index.html#creation-time-provisioners) Provisioner. It does not run every time you update scripts or code within the remote-exec block. If you need to completely rebuild a virtual machine, you can use the **`terraform taint`** command to mark it for a rebuild. Go ahead and taint your GCP VM and rebuild it before the next chapter.
-
-```bash
-terraform taint GCPrm_virtual_machine.vault
-terraform apply -auto-approve
-```
-
-.center[![:scale 60%](images/hashimoo.png)]
-
-???
-You might walk through this one with your students, showing them how easy it is to run commands on your target machine. The cowsay program was installed on your Linux target by the setup.sh script in the files directory.
-
----
-name: Chapter-6
-class: center,middle
-.section[
-Chapter 6  
-Manage and Change Infrastructure State
 ]
 
 ---
