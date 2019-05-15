@@ -100,16 +100,29 @@ Helpful Links
 -------------------------
 <br>
 <br>
-These Slides - https://jacobm3.github.io/gke/
+These Slides - 
 <br>
+https://jacobm3.github.io/gke/
 <br>
-Terraform binary - https://www.terraform.io/downloads.html
+Terraform binary - 
 <br>
+https://www.terraform.io/downloads.html
 <br>
-k8s cluster repo - https://github.com/jacobm3/gcp-workshop-k8s-cluster
+k8s cluster repo - 
 <br>
+https://github.com/jacobm3/gcp-workshop-k8s-cluster
 <br>
-k8s services repo - https://github.com/jacobm3/gcp-workshop-k8s-services
+k8s services repo - 
+<br>
+https://github.com/jacobm3/gcp-workshop-k8s-services
+<br>
+Terraform resources - 
+<br>
+https://www.terraform.io/docs/providers/kubernetes/index.html
+<br>
+https://www.terraform.io/docs/providers/google/r/container_cluster.html
+<br>
+https://www.terraform.io/docs/providers/terraform/d/remote_state.html
 
 ---
 name: How-to-Provision-a-VM
