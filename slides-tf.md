@@ -80,7 +80,7 @@ This workshop should take roughly three hours to complete. It is ideal for a hal
 
 ---
 name: Prereqs
-Workstation Prerequisites
+Class Requirements
 -------------------------
 <br><br><br>
 
