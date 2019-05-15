@@ -624,6 +624,8 @@ State
 
 .center[![:scale 90%](images/remote-state.png)]
 
+![:scale 100%](images/remote-state.png)
+
 ---
 name: workstation-setup-8
 .gitignore
