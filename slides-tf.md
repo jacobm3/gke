@@ -938,6 +938,47 @@ Everything else you want to configure within the resource is going to be sandwic
 
 ---
 name: terraform-apply
+k8s cluster resource
+-------------------------
+
+```terraform
+terraform {
+  required_version = ">= 0.11.0"
+}
+
+provider "google" {
+  project     = "${var.gcp_project}"
+  region      = "${var.gcp_region}"
+}
+
+resource "google_container_cluster" "k8sexample" {
+  name               = "${var.cluster_name}"
+  description        = "example k8s cluster"
+  location               = "${var.gcp_zone}"
+  initial_node_count = "${var.initial_node_count}"
+  enable_kubernetes_alpha = "true"
+  enable_legacy_abac = "true"
+
+  master_auth {
+    username = "${var.master_username}"
+    password = "${var.master_password}"
+  }
+
+  node_config {
+    machine_type = "${var.node_machine_type}"
+    disk_size_gb = "${var.node_disk_size}"
+    oauth_scopes = [
+      "https://www.googleapis.com/auth/compute",
+      "https://www.googleapis.com/auth/devstorage.read_only",
+      "https://www.googleapis.com/auth/logging.write",
+      "https://www.googleapis.com/auth/monitoring"
+    ]
+  }
+}
+```
+
+---
+name: terraform-apply
 Terraform Apply
 -------------------------
 Run the `terraform apply` command to execute the code and build a resource group. Type 'yes' when it prompts you to continue.
