@@ -86,7 +86,6 @@ Workstation Prerequisites
 <br><br><br>
 
 Things you'll need to complete this workshop:
-
 .biglist[
 1. Access to a GCP project and the JSON credentials file for that project's service account with Project/Owner role.
 1. Command line environment (bash or PowerShell)
@@ -96,8 +95,17 @@ Things you'll need to complete this workshop:
 1. gsutils command installed and authenticated to your GCP project
 ]
 
-???
-**Has anyone got experience using GCP? How do most of us normally get started? That's right, we log onto the GCP Portal and start clicking around. All of the major cloud providers make this part really easy. You get your account, log on and start clicking buttons. Let's take a peek at what that looks like...**
+---
+name: Prereqs
+Helpful Links
+-------------------------
+Helpful Links
+
+These Slides - https://jacobm3.github.io/gke/
+
+Terraform binary - https://www.terraform.io/downloads.html
+k8s cluster repo - https://github.com/jacobm3/gcp-workshop-k8s-cluster
+k8s services repo - https://github.com/jacobm3/gcp-workshop-k8s-services
 
 ---
 name: How-to-Provision-a-VM
