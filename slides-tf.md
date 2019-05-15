@@ -629,7 +629,7 @@ name: workstation-setup-8
 .gitignore
 -------------------------
 
-```
+```Tex
 #  Local .terraform directories
 **/.terraform/*
 
