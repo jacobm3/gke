@@ -141,7 +141,7 @@ Let's look at a few different ways you could provision a new GCP Virtual Machine
 1. Operating System (Image)
 1. VM Size
 1. Geographical Location
-1. Username and Password
+1. Authentication/Service Account 
 ]
 
 ???
