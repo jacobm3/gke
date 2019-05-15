@@ -631,7 +631,7 @@ name: workstation-setup-8
 .gitignore
 -------------------------
 
-```bash
+```
 #  Local .terraform directories
 **/.terraform/*
 
