@@ -925,7 +925,15 @@ google_container_cluster.k8sexample: Creating...
   description:                           "" => "example k8s cluster"
 ...
 google_container_cluster.k8sexample: Still creating... (10s elapsed)
-XXX
+...
+google_container_cluster.k8sexample: Creation complete after 4m30s (ID: k8sdemo-cluster)
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+k8s_endpoint = 35.232.81.154
+...
 ```
 
 ---
