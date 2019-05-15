@@ -595,19 +595,6 @@ cd gcp-workshop-k8s-cluster
 **This git command is copying a remote repository full of Terraform code onto your workstation. After that we change directories into the repo, and reload our text editor with the current folder opened. Visual Studio Code has a built in file browser which is essential for keeping track of large Terraform projects.**
 
 ---
-name: workstation-setup-7
-Get to Know Visual Studio Code
--------------------------
-.center[![:scale 70%](images/vsc_tour.png)]
-
-* Left side: File browser, search, version control & more.
-* Lower right: Integrated terminal. Run all commands here.
-* Upper right: Open and edit multiple files in tabs.
-
-???
-**This is your learning environment. You can do everything from within Visual Studio Code. On the left is your file browser, for managing, renaming, moving or opening files. On the upper right we have our text editor. And down here is the terminal, this is where we'll be running our terraform commands.**
-
----
 name: workstation-setup-8
 Explore the Repository
 -------------------------
@@ -645,10 +632,9 @@ Chapter 1 Review
 -------------------------
 .contents[
 In this chapter we:
-* Logged onto your workstation
-* Configured Visual Studio Code
-* Cloned the training git repository
-* Opened VSC in the training folder
+* Why Terraform
+* Cloned the training git repositories
+* Explored terraform files in the workspace
 ]
 
 ---
