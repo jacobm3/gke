@@ -602,7 +602,6 @@ cd gcp-workshop-k8s-cluster
 name: workstation-setup-8
 Explore the Repository
 -------------------------
-.center[![:scale 70%](images/terraform_config_files.png)]
 
 Terraform configuration files always end in either a `.tf` or `.tfvars` extension. These files are marked with the purple Terraform icon if you are using the vscode-icons set.
 
