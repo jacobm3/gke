@@ -603,6 +603,14 @@ name: workstation-setup-8
 Explore the Repository
 -------------------------
 
+```bash
+-rw-rw-rw- 1 jacob jacob   22 May 14 16:23 README.md
+-rw-rw-rw- 1 jacob jacob  170 May 14 16:24 backend.tf
+-rw-rw-rw- 1 jacob jacob  904 May 14 16:23 main.tf
+-rw-rw-rw- 1 jacob jacob  687 May 14 16:23 outputs.tf
+-rw-rw-rw- 1 jacob jacob   26 May 14 16:26 terraform.tfvars
+-rw-rw-rw- 1 jacob jacob 1.1K May 14 16:27 variables.tf
+```
 Terraform configuration files always end in either a `.tf` or `.tfvars` extension. These files are marked with the purple Terraform icon if you are using the vscode-icons set.
 
 ???
@@ -615,14 +623,14 @@ Verify That Terraform is Installed
 <br>
 Run the terraform --version command:
 
-```powershell
+```bash
 terraform --version
 ```
 
 You should see the following output (version number may vary):
 
-```powershell
-PS> terraform --version
+```bash
+$ terraform --version
 Terraform v0.11.13
 ```
 
