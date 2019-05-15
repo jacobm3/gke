@@ -834,9 +834,12 @@ Resource actions are indicated with the following symbols:
 
 Terraform will perform the following actions:
 
-  + google_container_cluster.k8sexample
-      id:                                    <computed>
-      description:                           "example k8s cluster"
+  + google_storage_bucket.another-bucket
+      id:                         <computed>
+      force_destroy:              "false"
+      location:                   "US"
+      name:                       "yourname-bucket-demo-329902938048302"
+
 ```
 
 We are not actually building anything yet. This is just a dry run, showing us what would happen if we applied our change.
@@ -959,7 +962,7 @@ Everything else you want to configure within the resource is going to be sandwic
 
 ---
 name: terraform-apply
-GCP Storate Bucket Resource
+GCP Storage Bucket Resource
 -------------------------
 
 ```terraform
