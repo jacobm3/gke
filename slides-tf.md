@@ -80,6 +80,26 @@ This workshop should take roughly three hours to complete. It is ideal for a hal
 **Here is our agenda for today's training. We'll be taking breaks after each major section or every hour, whichever comes first. This part of the workshop will take us through lunch break, then we'll cover Vault during the afternoon session.**
 
 ---
+name: Prereqs
+Workstation Prerequisites
+-------------------------
+<br><br><br>
+
+Things you'll need to complete this workshop:
+
+.biglist[
+1. Access to a GCP project and the JSON credentials file for that project's service account with Project/Owner role.
+1. Command line environment (bash or PowerShell)
+1. Text editor (VSC, vim, etc. preferably with terraform/HCL syntax highlighting)
+1. Terraform binary installed (https://www.terraform.io/downloads.html)
+1. Git client/command installed
+1. gsutils command installed and authenticated to your GCP project
+]
+
+???
+**Has anyone got experience using GCP? How do most of us normally get started? That's right, we log onto the GCP Portal and start clicking around. All of the major cloud providers make this part really easy. You get your account, log on and start clicking buttons. Let's take a peek at what that looks like...**
+
+---
 name: How-to-Provision-a-VM
 How to Provision an GCP VM
 -------------------------
@@ -521,17 +541,6 @@ class: center,middle
 Chapter 1  
 Set Up Your Workstation
 ]
-
----
-name: workstation-setup-5
-Open the Integrated Terminal
--------------------------
-.center[![:scale 70%](images/open_terminal.png)]
-
-Open the integrated VSC terminal using the menu or keyboard shortcut. You'll be asked to choose a default shell the first time you do this. Select Powershell as your default shell. You can change this later in your settings if you wish.
-
-???
-I've seen this popup sometimes take two tries to save properly. It might be a bug. In any case it shouldn't matter because the default is Powershell which is what we want.
 
 ---
 name: workstation-setup-6
