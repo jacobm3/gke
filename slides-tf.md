@@ -98,11 +98,16 @@ Things you'll need to complete this workshop:
 name: Prereqs
 Helpful Links
 -------------------------
+<br>
+<br>
 These Slides - https://jacobm3.github.io/gke/
+<br>
 <br>
 Terraform binary - https://www.terraform.io/downloads.html
 <br>
+<br>
 k8s cluster repo - https://github.com/jacobm3/gcp-workshop-k8s-cluster
+<br>
 <br>
 k8s services repo - https://github.com/jacobm3/gcp-workshop-k8s-services
 
@@ -548,6 +553,28 @@ class: center,middle
 Chapter 1  
 Set Up Your Workstation
 ]
+
+---
+name: workstation-setup-6
+Create a Storage Bucket
+-------------------------
+<br><br>
+Pick a Bucket Name
+<br><br>
+GCP Console:
+Storage -> Storage -> Create Bucket
+
+CLI:
+```bash
+$ gcloud auth activate-service-account --project=YOUR-PROJECT  \
+         --key-file=PATH-TO-YOUR-SVC-CREDS.json
+
+$ gsutil mb gs://YOUR-BUCKET-NAME 
+```
+
+
+???
+**This git command is copying a remote repository full of Terraform code onto your workstation. After that we change directories into the repo, and reload our text editor with the current folder opened. Visual Studio Code has a built in file browser which is essential for keeping track of large Terraform projects.**
 
 ---
 name: workstation-setup-6
