@@ -624,7 +624,7 @@ You should see the following output (version number may vary):
 
 ```powershell
 PS> terraform --version
-Terraform v0.11.11
+Terraform v0.11.13
 ```
 
 ???
@@ -636,7 +636,7 @@ Chapter 1 Review
 -------------------------
 .contents[
 In this chapter we:
-* Why Terraform
+* Discussed Why Terraform
 * Cloned the training git repositories
 * Explored terraform files in the workspace
 ]
@@ -651,6 +651,23 @@ My First Terraform
 
 ???
 **Now that you have terraform installed and working with GCP, we can do a few dry runs before building real infrastructure. Follow along carefully, copying and pasting the commands on each slide into your terminal as we go.**
+
+
+---
+name: workstation-setup-6
+Configure Remote State for gcp-workshop-k8s-cluster
+-------------------------
+<br><br>
+.biglist[
+1. Locate the path to your service account JSON credential file
+1. Edit backend.tf
+1. Update bucket name and credentials path
+]
+
+
+???
+**This git command is copying a remote repository full of Terraform code onto your workstation. After that we change directories into the repo, and reload our text editor with the current folder opened. Visual Studio Code has a built in file browser which is essential for keeping track of large Terraform projects.**
+
 
 ---
 name: terraform-help
@@ -698,7 +715,7 @@ terraform init
 
 Output:
 ```tex
-* provider.GCPrm: version = "~> 1.21"
+* provider.google: version = "~> 1.21"
 
 Terraform has been successfully initialized!
 
@@ -729,10 +746,10 @@ terraform plan
 
 Output:
 ```tex
-var.prefix
-  This prefix will be included in the name of most resources.
+var.gcp_project
+  GCP project name
 
-* Enter a value: bugsbunny
+* Enter a value: your-project-name
 
 Refreshing Terraform state in-memory prior to plan...
 The refreshed state will be used to calculate this plan, but will not be
@@ -754,12 +771,7 @@ When you run `terraform plan` and enter your name, you should see output that lo
 ```tex
 Terraform will perform the following actions:
 
-  + GCPrm_resource_group.vaultworkshop
-      id:       <computed>
-      location: "centralus"
-      name:     "bugsbunny-vault-workshop"
-      tags.%:   <computed>
-
+XXX
 
 Plan: 1 to add, 0 to change, 0 to destroy.
 ```
