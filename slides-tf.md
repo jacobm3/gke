@@ -99,11 +99,11 @@ name: Prereqs
 Helpful Links
 -------------------------
 These Slides - https://jacobm3.github.io/gke/
-
+<br>
 Terraform binary - https://www.terraform.io/downloads.html
-
+<br>
 k8s cluster repo - https://github.com/jacobm3/gcp-workshop-k8s-cluster
-
+<br>
 k8s services repo - https://github.com/jacobm3/gcp-workshop-k8s-services
 
 ---
