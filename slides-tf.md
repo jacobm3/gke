@@ -784,12 +784,7 @@ Terraform will perform the following actions:
 
   + google_container_cluster.k8sexample
       id:                                    <computed>
-      additional_zones.#:                    <computed>
-      addons_config.#:                       <computed>
-      cluster_autoscaling.#:                 <computed>
-      cluster_ipv4_cidr:                     <computed>
       description:                           "example k8s cluster"
-
 ```
 
 We are not actually building anything yet. This is just a dry run, showing us what would happen if we applied our change.
