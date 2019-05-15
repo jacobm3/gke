@@ -262,28 +262,6 @@ resource "google_compute_instance" "vm_instance" {
 Advance back to the previous slide to illustrate the difference between JSON and equivalent Terraform. 
 
 ---
-name: What-is-Terraform
-What is Terraform?
--------------------------
-
-![:scale 100%](./images/azure_tf_code.png)
-
-.contents[
-* Executable Documentation
-* Human and machine readable
-* Easy to learn
-* Test, share, re-use, automate
-* Works on all major cloud providers
-]
-
-???
-**So what exactly _is_ Terraform? Terraform is the DNA of your hybrid infrastructure. Terraform code is written in HCL, or HashiCorp Config Language. It is the only programming language designed specifically for provisioning infrastructure on any platform.**
-
-**Do any of you have a wiki or set of runbooks that contain provisioning instructions? Think for a moment about that wiki. Now I want you to imagine the date stamp, when was this thing last edited? Let's say it was four years ago. Do you think maybe something could have changed in the past four years?**
-
-**It sounds funny but the truth is your wiki is the obituary of the last known state of your infrastructure. One of the main reasons to use terraform is because it is self-documenting. The code itself explains every step required to build this infrastructure, and therefore it is always up to date.**
-
----
 name: IaC
 What is Infrastructure as Code?
 -------------------------
@@ -414,6 +392,28 @@ Infrastructure as Code Allows Us To...
 
 ???
 **Now that all your infrastructure is stored in a source code repository, it's very easy for multiple users and teams to collaborate on it. Developer needs a new feature? He or she can easily adjust the source code and send the change back to the operations folks for review. Terraform is a universal language that is understood by both developers and operations teams.**
+
+---
+name: What-is-Terraform
+What is Terraform?
+-------------------------
+
+![:scale 100%](./images/azure_tf_code.png)
+
+.contents[
+* Executable Documentation
+* Human and machine readable
+* Easy to learn
+* Test, share, re-use, automate
+* Works on all major cloud providers
+]
+
+???
+**So what exactly _is_ Terraform? Terraform is the DNA of your hybrid infrastructure. Terraform code is written in HCL, or HashiCorp Config Language. It is the only programming language designed specifically for provisioning infrastructure on any platform.**
+
+**Do any of you have a wiki or set of runbooks that contain provisioning instructions? Think for a moment about that wiki. Now I want you to imagine the date stamp, when was this thing last edited? Let's say it was four years ago. Do you think maybe something could have changed in the past four years?**
+
+**It sounds funny but the truth is your wiki is the obituary of the last known state of your infrastructure. One of the main reasons to use terraform is because it is self-documenting. The code itself explains every step required to build this infrastructure, and therefore it is always up to date.**
 
 ---
 name: IaC-Tools
