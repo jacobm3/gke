@@ -769,11 +769,27 @@ Run Terraform Plan
 When you run `terraform plan` and enter your name, you should see output that looks like this:
 
 ```tex
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
 Terraform will perform the following actions:
 
-XXX
+  + google_container_cluster.k8sexample
+      id:                                    <computed>
+      additional_zones.#:                    <computed>
+      addons_config.#:                       <computed>
+      cluster_autoscaling.#:                 <computed>
+      cluster_ipv4_cidr:                     <computed>
+      description:                           "example k8s cluster"
 
-Plan: 1 to add, 0 to change, 0 to destroy.
 ```
 
 We are not actually building anything yet. This is just a dry run, showing us what would happen if we applied our change.
@@ -782,18 +798,15 @@ We are not actually building anything yet. This is just a dry run, showing us wh
 name: set-prefix
 Set the Prefix Variable
 -------------------------
-Rename the **terraform.tfvars.example** file to **terraform.tfvars** 
+Create file **terraform.tfvars** at the top of the project directory.
 
-Change where it says "yourname" to your own name. No spaces or special characters please. Keep it all lowercase. Save the file.
+Add a "gcp_project" variable with the name of your project.
 
 ```tex
-# Rename or copy this file to terraform.tfvars
-# Prefix must be all lowercase letters, no symbols please.
-
-*prefix = "yourname"
+gcp_project = "your-project-name"
 ```
 
-Now you will no longer be prompted to enter your prefix variable when you run terraform commands.
+Now you will no longer be prompted to enter your gcp_project variable when you run terraform commands.
 
 The **terraform.tfvars** file is your own personal settings file. You can use it to set or override any of the default variables in the variables.tf file.
 
