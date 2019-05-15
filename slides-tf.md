@@ -570,6 +570,8 @@ $ gcloud auth activate-service-account --project=YOUR-PROJECT  \
          --key-file=PATH-TO-YOUR-SVC-CREDS.json
 
 $ gsutil mb gs://YOUR-BUCKET-NAME 
+
+$ gsutil ls
 ```
 
 
@@ -578,21 +580,15 @@ $ gsutil mb gs://YOUR-BUCKET-NAME
 
 ---
 name: workstation-setup-6
-Clone the Training Repo
+Clone the Training Repos
 -------------------------
 <br><br>
-Run the following commands to clone the training repository from GitHub:
+Run the following commands to clone the training repositories from GitHub:
 
-```powershell
-cd ~/Desktop
-git clone https://github.com/scarolan/GCP-terraform-vault-workshop
-cd GCP-terraform-vault-workshop
-```
-
-Now reload your text editor in the current directory with the code command:
-
-```powershell
-code -r .
+```bash
+git clone https://github.com/jacobm3/gcp-workshop-k8s-cluster.git
+git clone https://github.com/jacobm3/gcp-workshop-k8s-services.git
+cd gcp-workshop-k8s-cluster
 ```
 
 ???
